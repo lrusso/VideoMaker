@@ -5,16 +5,19 @@ let counter2=0
 let slideduration=0
 let videoduration=0
 let musicEnabled=0
+let timeValue=0
 
 echo "ffmpeg \\" >output.sh
 
 
 while IFS=, read -r field1 field2
   do
+    timeValue=`echo $videoduration+$field2 | awk '{print $1 + $2}'`
+    videoduration=$timeValue
     counter1=$((counter1+1))
-    videoduration=$((videoduration+field2))
-    echo "-loop 1 -t "$field2" -i "$field1" \\" >>output.sh
+    echo "-loop 1 -t "$timeValue" -i "$field1" \\" >>output.sh
 done < input.cfg
+
 
 
 if test -f "music.mp3";
@@ -33,7 +36,8 @@ while IFS=, read -r field1 field2
       then
         echo " ["$counter2"]format=yuv420p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+"$slideduration"/TB[f"$((counter2-1))"]; \\" >>output.sh
     fi
-    slideduration=$((slideduration+field2))
+    timeValue=`echo $slideduration+$field2 | awk '{print $1 + $2}'`
+    slideduration=$timeValue
     counter2=$((counter2+1))
 done < input.cfg
 
@@ -63,7 +67,7 @@ if ((musicEnabled>0))
 fi
 
 
-echo "-t "$((videoduration))" \\" >>output.sh
+echo "-t "$videoduration" \\" >>output.sh
 echo "output.mp4" >>output.sh
 
 
