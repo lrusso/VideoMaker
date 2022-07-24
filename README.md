@@ -9,22 +9,22 @@ Creating a video using images, music and a fade in effect using ffmpeg.
 - The ```input_video.cfg``` file must contain all the slides and how many seconds that slide must be displayed. For example:
 
 ```
-slide001.png,5
-slide002.png,3
-slide003.png,8.5
-slide004.png,4
-slide005.png,6.2
-slide006.png,2
+slide001.png, 5
+slide002.png, 3
+slide003.png, 8.5
+slide004.png, 4
+slide005.png, 6.2
+slide006.png, 2
 ```
 
 - The ```input_audio.cfg``` file must contain all the audio files and how many millseconds of delay there will be for each audio file. For example:
 
 ```
 music.mp3,0
-voice001.wav,1000
-voice002.wav,3000
-voice003.wav,5000
-voice004.wav,7000
+voice001.wav, 1000
+voice002.wav, 3000
+voice003.wav, 5000
+voice004.wav, 7000
 ```
 
 ## How to use it?
@@ -42,8 +42,8 @@ voice004.wav,7000
 - At least 3 slides are required to create a video.
 - To have a fade in from a black screen when the video starts, you have to create a ```slide001.png``` file that must contain a black image and then the first two lines in the ```input.cfg``` should be:
 ```
-slide001.png,0
-slide002.png,1
+slide001.png, 0
+slide002.png, 1
 ```
 - For increasing the volume of an audio file, you should do:
 ```
