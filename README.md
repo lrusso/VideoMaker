@@ -31,7 +31,7 @@ voice004.wav,7000
 
 - Install ```ffmpeg``` on your system.
 - Open the terminal.
-- Go to the folder where you have your slides, audios (optional) and configurations files (```input_video.cfg``` and ```input_audio.cfg```) are located.
+- Go to the folder where you have your slides, audios (optionals) and configuration files (```input_video.cfg``` and ```input_audio.cfg```) are located.
 - Paste the ```make.sh``` file into that folder.
 - Make the script executable by running ```chmod +x make.sh```.
 - Run ```./make.sh```.
