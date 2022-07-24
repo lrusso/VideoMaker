@@ -10,47 +10,46 @@ if test -f "output.mp3";
     rm output.mp3
 fi
 
+if test -f "input_audio.cfg";
+  then
+    echo "ffmpeg \\" >output_audio.sh
 
-echo "ffmpeg \\" >output_audio.sh
+    while IFS=, read -r field1 field2
+      do
+        echo "-i "$field1" \\" >>output_audio.sh
+    done < input_audio.cfg
 
+    echo "-filter_complex \"\\" >>output_audio.sh
 
-while IFS=, read -r field1 field2
-  do
-    echo "-i "$field1" \\" >>output_audio.sh
-done < input_audio.cfg
+    while IFS=, read -r field1 field2
+      do
+        audioCounter1=$((audioCounter1+1))
+        echo "["$audioCounter1"]adelay="$field2"|"$field2"[a"$audioCounter1"]; \\" >>output_audio.sh
+    done < input_audio.cfg
 
+    audioCounter1=-1
 
-echo "-filter_complex \"\\" >>output_audio.sh
+    while IFS=, read -r field1 field2
+      do
+        audioCounter1=$((audioCounter1+1))
+        echo "[a"$audioCounter1"]\\" >>output_audio.sh
+    done < input_audio.cfg
 
-
-while IFS=, read -r field1 field2
-  do
     audioCounter1=$((audioCounter1+1))
-    echo "["$audioCounter1"]adelay="$field2"|"$field2"[a"$audioCounter1"]; \\" >>output_audio.sh
-done < input_audio.cfg
 
-audioCounter1=-1
-
-while IFS=, read -r field1 field2
-  do
-    audioCounter1=$((audioCounter1+1))
-    echo "[a"$audioCounter1"]\\" >>output_audio.sh
-done < input_audio.cfg
-
-audioCounter1=$((audioCounter1+1))
-
-echo "amix=inputs=$audioCounter1 \\" >>output_audio.sh
+    echo "amix=inputs=$audioCounter1 \\" >>output_audio.sh
 
 
-echo ":duration=first:dropout_transition=99999999,volume=2.1\" \\" >>output_audio.sh
+    echo ":duration=first:dropout_transition=99999999,volume=2.1\" \\" >>output_audio.sh
 
 
-echo "output_audio.mp3" >>output_audio.sh
+    echo "output_audio.mp3" >>output_audio.sh
 
 
-chmod +x output_audio.sh
-./output_audio.sh
+    chmod +x output_audio.sh
+    ./output_audio.sh
 
+fi
 
 # creating the video file with the audio file (if exists)
 
