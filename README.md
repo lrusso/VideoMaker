@@ -8,9 +8,12 @@ Creating a video using images, music and a fade in effect using ffmpeg.
 - The ```input.cfg``` file must contain all the slides and how many seconds that slide must be displayed. For example:
 
 ```
-slide001.png,5
-slide002.png,8
-slide003.png,15
+slide001.png, 5
+slide002.png, 3
+slide003.png, 8.5
+slide004.png, 4
+slide005.png, 6.2
+slide006.png, 2
 ```
 
 - The music is optional, if the music file ```music.mp3``` doesn't exists, the video will be created anyway.
@@ -34,8 +37,8 @@ slide003.png,15
 - The ```input.cfg``` file must begin like this:
 
 ```
-slide001.png,0
-slide002.png,0
+slide001.png, 0
+slide002.png, 0
 ```
 
 And the first slide ```slide001.png``` must be a black image.
