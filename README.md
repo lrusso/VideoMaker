@@ -17,14 +17,14 @@ slide005.png, 6.2
 slide006.png, 2
 ```
 
-- The ```input_audio.cfg``` file must contain all the audio files and how many millseconds of delay there will be for each audio file. For example:
+- The ```input_audio.cfg``` file must contain all the audio files and how many seconds of delay there will be for each audio file. For example:
 
 ```
 music.mp3,0
-voice001.wav, 1000
-voice002.wav, 3000
-voice003.wav, 5000
-voice004.wav, 7000
+voice001.wav, 1.5
+voice002.wav, 3
+voice003.wav, 5
+voice004.wav, 7.8
 ```
 
 ## How to use it?
