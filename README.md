@@ -35,6 +35,7 @@ voice004.wav, 7000
 - Paste the ```make.sh``` file into that folder.
 - Make the script executable by running ```chmod +x make.sh```.
 - Run ```./make.sh```.
+- The  ```output.mp4 ``` file will be created.
 
 ## Things to know:
 
