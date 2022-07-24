@@ -46,11 +46,11 @@ voice004.wav, 7.8
 slide001.png, 0
 slide002.png, 1
 ```
-- For increasing the volume of an audio file, you should do:
+- For increasing the volume of an audio file, you can do:
 ```
 ffmpeg -i voice.wav -filter:a "volume=1.5" voice_edited.wav
 ```
-- For decreasing the volume of an audio file, you should do:
+- For decreasing the volume of an audio file, you can do:
 ```
 ffmpeg -i voice.wav -filter:a "volume=0.5" voice_edited.wav
 ```
