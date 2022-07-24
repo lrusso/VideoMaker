@@ -7,6 +7,7 @@ let videoduration=0
 let musicEnabled=0
 let timeValue=0
 
+
 echo "ffmpeg \\" >output.sh
 
 
@@ -17,7 +18,6 @@ while IFS=, read -r field1 field2
     counter1=$((counter1+1))
     echo "-loop 1 -t "$timeValue" -i "$field1" \\" >>output.sh
 done < input.cfg
-
 
 
 if test -f "music.mp3";
