@@ -34,5 +34,5 @@ slide006.png, 2
 - If you want to have a fade in from a black screen when the video starts, you have to create a ```slide001.png``` file that must contain a black image and then the first two lines in the ```input.cfg``` should be:
 ```
 slide001.png, 0
-slide002.png, 0
+slide002.png, 1
 ```
