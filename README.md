@@ -4,8 +4,9 @@ Creating a video using images, music and a fade in effect using ffmpeg.
 
 ## How does it work?
 
-- The script will read the ```input.cfg``` file.
-- The ```input.cfg``` file must contain all the slides and how many seconds that slide must be displayed. For example:
+- The script will read the ```input_video.cfg``` file.
+- The script will read the ```input_audio.cfg``` file (optional file).
+- The ```input_video.cfg``` file must contain all the slides and how many seconds that slide must be displayed. For example:
 
 ```
 slide001.png,5
@@ -16,13 +17,21 @@ slide005.png,6.2
 slide006.png,2
 ```
 
-- The music is optional, if the music file ```music.mp3``` doesn't exists, the video will be created anyway.
+- The ```input_audio.cfg``` file must contain all the audio files and how many millseconds of delay there will be for each audio file. For example:
+
+```
+music.mp3,0
+voice001.wav,1000
+voice002.wav,3000
+voice003.wav,5000
+voice004.wav,7000
+```
 
 ## How to use it?
 
 - Install ```ffmpeg``` on your system.
 - Open the terminal.
-- Go to the folder where you have your slides, music (optional) and ```input.cfg``` file.
+- Go to the folder where you have your slides, audios (optional) and configurations files (```input_video.cfg``` and ```input_audio.cfg```) are located.
 - Paste the ```make.sh``` file into that folder.
 - Make the script executable by running ```chmod +x make.sh```.
 - Run ```./make.sh```.
