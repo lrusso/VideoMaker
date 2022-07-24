@@ -3,7 +3,7 @@
 # creating the audio file
 
 let audioCounter1=-1
-
+let audioDelayInMS=-1
 
 if test -f "output.mp3";
   then
@@ -23,8 +23,9 @@ if test -f "input_audio.cfg";
 
     while IFS=, read -r field1 field2
       do
+        audioDelayInMS=`echo $field2 1000 | awk '{print $1 * $2}'`
         audioCounter1=$((audioCounter1+1))
-        echo "["$audioCounter1"]adelay="$field2"|"$field2"[a"$audioCounter1"]; \\" >>output_audio.sh
+        echo "["$audioCounter1"]adelay="$audioDelayInMS"|"$audioDelayInMS"[a"$audioCounter1"]; \\" >>output_audio.sh
     done < input_audio.cfg
 
     audioCounter1=-1
