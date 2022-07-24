@@ -31,8 +31,16 @@ slide006.png, 2
 
 - Every slide must have the exact same width and height.
 - At least 3 slides are required to create a video.
-- If you want to have a fade in from a black screen when the video starts, you have to create a ```slide001.png``` file that must contain a black image and then the first two lines in the ```input.cfg``` should be:
+- To have a fade in from a black screen when the video starts, you have to create a ```slide001.png``` file that must contain a black image and then the first two lines in the ```input.cfg``` should be:
 ```
 slide001.png, 0
 slide002.png, 1
+```
+- For increasing the volume of an audio file, you should do:
+```
+ffmpeg -i voice.wav -filter:a "volume=1.5" voice.wav
+```
+- For decreasing the volume of an audio file, you should do:
+```
+ffmpeg -i voice.wav -filter:a "volume=0.5" voice.wav
 ```
