@@ -31,14 +31,8 @@ slide006.png, 2
 
 - Every slide must have the exact same width and height.
 - At least 3 slides are required to create a video.
-
-## How to have a fade in from black when the video stars:
-
-- The ```input.cfg``` file must begin like this:
-
+- If you want to have a fade in from a black screen when the video starts, you have to create a ```slide001.png``` file that must contain a black image and then the first two lines in the ```input.cfg``` should be:
 ```
 slide001.png, 0
 slide002.png, 0
 ```
-
-And the first slide ```slide001.png``` must be a black image.
