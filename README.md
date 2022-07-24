@@ -18,7 +18,7 @@ slide006.png, 2
 
 - The music is optional, if the music file ```music.mp3``` doesn't exists, the video will be created anyway.
 
-## How do I use it?
+## How to use it?
 
 - Install ```ffmpeg``` on your system.
 - Open the terminal.
