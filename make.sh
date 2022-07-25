@@ -1,17 +1,27 @@
 #!/bin/bash
 
 # -------------------------------------------------------------------------------------------------------------------
+# DELETING ANY PREVIOUS OUTPUT
+# -------------------------------------------------------------------------------------------------------------------
+
+# CHECKING IF THERE IS ANY PREVIOUS AUDIO OUTPUT AND DELETING THE FILE
+if test -f "output_audio.mp3";
+  then
+    rm output_audio.mp3
+fi
+
+# CHECKING IF THERE IS ANY PREVIOUS VIDEO OUTPUT AND DELETING THE FILE
+if test -f "output.mp4";
+  then
+    rm output.mp4
+fi
+
+# -------------------------------------------------------------------------------------------------------------------
 # CREATING THE AUDIO FILE
 # -------------------------------------------------------------------------------------------------------------------
 
 let audioCounter1=-1
 let audioDelayInMS=-1
-
-# CHECKING IF THERE IS ANY PREVIOUS AUDIO OUTPUT AND DELETING THE FILE
-if test -f "output.mp3";
-  then
-    rm output.mp3
-fi
 
 # CHECKING IF THERE IS AN AUDIO CONFIGURATION
 if test -f "input_audio.cfg";
@@ -143,12 +153,6 @@ echo "-t "$videoDuration" \\" >>output.sh
 
 # SETTING THE OUTPUT VIDEO FILENAME
 echo "output.mp4" >>output.sh
-
-# CHECKING IF THERE IS ANY PREVIOUS VIDEO OUTPUT AND DELETING THE FILE
-if test -f "output.mp4";
-  then
-    rm output.mp4
-fi
 
 # MAKING THE OUTPUT VIDEO SCRIPT EXECUTABLE
 chmod +x output.sh
