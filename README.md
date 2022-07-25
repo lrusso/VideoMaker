@@ -69,5 +69,5 @@ ffmpeg -i voice.wav -ar 22050 voice_edited.wav
 ```
 - For cutting the first 20 seconds of an audio file:
 ```
-ffmpeg -ss 20 -i voice.wav voice_edited.wav
+ffmpeg -i voice.wav -ss 20 voice_edited.wav
 ```
