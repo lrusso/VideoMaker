@@ -156,6 +156,8 @@ echo "output.mp4" >>output.sh
 
 # MAKING THE OUTPUT VIDEO SCRIPT EXECUTABLE
 chmod +x output.sh
+
+# RUNNING THE VIDEO MAKER SCRIPT
 ./output.sh
 
 # DELETING THE AUDIO OUTPUT SCRIPT
