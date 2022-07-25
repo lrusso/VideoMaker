@@ -59,6 +59,10 @@ ffmpeg -i voice.wav -filter:a "volume=0.5" voice_edited.wav
 ```
 ffmpeg -i voice.wav -b:a 128k voice_edited.wav
 ```
+- For changing the sample rate of an audio file from stereo to mono:
+```
+ffmpeg -i voice.wav -ar 22050 voice_edited.wav
+```
 - For converting an audio file from stereo to mono:
 ```
 ffmpeg -i voice.wav -ac 1 voice_edited.wav
