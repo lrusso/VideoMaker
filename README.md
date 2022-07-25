@@ -41,6 +41,7 @@ voice004.wav, 7.8
 
 - Every slide must have the exact same width and height.
 - At least 3 slides are required to create a video.
+- The created video will have the same resolution of the images.
 - To have a fade in from a black screen when the video starts, you have to create a ```slide001.png``` file that must contain a black image and then the first two lines in the ```input_video.cfg``` should be:
 ```
 slide001.png, 0
