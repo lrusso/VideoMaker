@@ -55,6 +55,10 @@ ffmpeg -i voice.wav -filter:a "volume=1.5" voice_edited.wav
 ```
 ffmpeg -i voice.wav -filter:a "volume=0.5" voice_edited.wav
 ```
+- For changing the kbps of an audio file:
+```
+ffmpeg -i music.mp3 -b:a 128k music_edited.mp3
+```
 - For converting an audio file from stereo to mono:
 ```
 ffmpeg -i voice.wav -ac 1 voice_edited.wav
