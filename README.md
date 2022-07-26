@@ -6,6 +6,7 @@ Creating a video using images, music and a fade in effect using ffmpeg.
 
 - The script will read the ```input_video.cfg``` file.
 - The script will read the ```input_audio.cfg``` file (optional file).
+- The script will read the ```input_gifs.cfg``` file (optional file).
 - The ```input_video.cfg``` file must contain all the slides and how many seconds that slide must be displayed. For example:
 
 ```
@@ -26,6 +27,16 @@ voice002.wav, 3
 voice003.wav, 5
 voice004.wav, 7.8
 ```
+
+- The ```input_audio.cfg``` file must contain all the audio files and how many seconds of delay there will be for each audio file. For example:
+
+```
+gif001.gif, 0, 200, 200, 100, 100, 3, 5
+gif002.gif, 0, 200, 200, 300, 300, 6, 8
+gif003.gif, 0, 200, 200, 500, 500, 9, 10
+```
+
+The parameters that you are been pased are: ```ignore_loop``` (0 or 1), ```width```, ```height```, ```x```, ```y```, ```fade_in_at``` and ```fade_out_at```.
 
 ## How to use it?
 
