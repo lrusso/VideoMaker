@@ -36,7 +36,7 @@ gif002.gif, 0, 200, 200, 300, 300, 6, 8
 gif003.gif, 0, 200, 200, 500, 500, 9, 10
 ```
 
-The required parameters are ```ignore_loop``` (0 or 1), ```width``` (integer), ```height``` (integer), ```x``` (integer), ```y``` (integer), ```fade_in_after``` (seconds) and ```fade_out_after``` (seconds).
+The required data for each row is: ```filename``` (string), ```ignore_loop``` (0 or 1), ```width``` (integer), ```height``` (integer), ```x``` (integer), ```y``` (integer), ```fade_in_after``` (seconds) and ```fade_out_after``` (seconds).
 
 ## How to use it?
 
