@@ -78,11 +78,15 @@ ffmpeg -i voice.wav -ac 1 voice_edited.wav
 ```
 ffmpeg -i voice.wav -ar 22050 voice_edited.wav
 ```
-- For cutting the first 20 seconds of an audio file:
+- For cutting the first 20 seconds of an audio/video file:
 ```
 ffmpeg -i voice.wav -ss 20 voice_edited.wav
 ```
-- For cutting the first 20 seconds and getting only the next 5 seconds of an audio file:
+- For cutting the first 20 seconds and getting only the next 5 seconds of an audio/video file:
 ```
 ffmpeg -i voice.wav -ss 20 -t 5 voice_edited.wav
+```
+- For converting a MP4 to GIF:
+```
+ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=320:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' video.gif
 ```
