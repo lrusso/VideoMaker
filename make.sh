@@ -10,6 +10,12 @@ if test -f "output_audio.mp3";
     rm output_audio.mp3
 fi
 
+# CHECKING IF THERE IS ANY PREVIOUS VIDEO OUTPUT PART 1 AND DELETING THE FILE
+if test -f "output-part1.mp4";
+  then
+    rm output-part1.mp4
+fi
+
 # CHECKING IF THERE IS ANY PREVIOUS VIDEO OUTPUT AND DELETING THE FILE
 if test -f "output.mp4";
   then
@@ -79,7 +85,7 @@ if test -f "input_audio.cfg";
 fi
 
 # -------------------------------------------------------------------------------------------------------------------
-# CREATING THE VIDEO FILE
+# CREATING THE SCRIPT FOR MAKING THE VIDEO WITH IMAGES AND SOUNDS
 # -------------------------------------------------------------------------------------------------------------------
 
 let videoCounter1=0
@@ -152,13 +158,89 @@ fi
 echo "-t "$videoDuration" \\" >>output.sh
 
 # SETTING THE OUTPUT VIDEO FILENAME
-echo "output.mp4" >>output.sh
+echo "output-part1.mp4" >>output.sh
+
+# -------------------------------------------------------------------------------------------------------------------
+# CREATING THE SCRIPT FOR ADDING THE GIF FILES TO THE VIDEO FILE
+# -------------------------------------------------------------------------------------------------------------------
+
+let gifCounter1=1
+let gifCounter2=0
+
+# CHECKING IF GIFS ARE GOING TO BE ADDED TO THE VIDEO
+if test -f "input_gifs.cfg";
+  then
+
+    # ADDING A BREAKLINE TO THE SCRIPT
+    echo "" >>output.sh
+
+    # ADDING A SECOND CALL TO THE FFMPEG THAT WILL ADD THE GIFS TO THE VIDEO FILE
+    echo "ffmpeg \\" >>output.sh
+
+    # SETTING THE INPUT FILE
+    echo "-i output-part1.mp4 \\" >>output.sh
+
+    # PASSING ALL THE GIF FILES
+    while IFS=, read -r field1 field2 field3 field4 field5 field6 field7 field8
+      do
+        echo "-ignore_loop"$field2" -i "$field1" \\" >>output.sh
+    done < input_gifs.cfg
+
+    # WRITING THE GIF FILTER PARAMETER
+    echo "-filter_complex \" \\" >>output.sh
+
+    # SETTING ALL THE FADES IN AND OUT FOR EACH GIF FILE
+    while IFS=, read -r field1 field2 field3 field4 field5 field6 field7 field8
+      do
+        field3=`echo $field3 | sed 's/ *$//g'`
+        field4=`echo $field4 | sed 's/ *$//g'`
+        field7=`echo $field7 | sed 's/ *$//g'`
+        field8=`echo $field8 | sed 's/ *$//g'`
+        echo " ["$gifCounter1"]scale="$field3":"$field4",fade=in:st="$field7":d=1:alpha=1,fade=out:st="$field8":d=1:alpha=1[f"$((gifCounter1-1))"]; \\" >>output.sh
+        gifCounter1=$((gifCounter1+1))
+    done < input_gifs.cfg
+
+    # SETTING ALL THE ELEMENTS THAT WILL BE ADDED DURING THE FFMPEG EXECUTION
+    while IFS=, read -r field1 field2 field3 field4 field5 field6 field7 field8
+      do
+        field5=`echo $field5 | sed 's/ *$//g'`
+        field6=`echo $field6 | sed 's/ *$//g'`
+        if (($gifCounter2==0));
+          then
+            echo " [0][f0]overlay="$field5":"$field6"[bg1]; \\" >>output.sh
+          else
+            if (($gifCounter2==$gifCounter1-2))
+              then
+                echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6",format=yuv420p\" \\" >>output.sh
+              else
+                echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6"[bg"$((gifCounter2+1))"]; \\" >>output.sh
+             fi
+          fi
+        gifCounter2=$((gifCounter2+1))
+    done < input_gifs.cfg
+
+    # SETTING THE VIDEO DURATION
+    echo "-t "$videoDuration" \\" >>output.sh
+
+    # SETTING THE OUTPUT VIDEO FILENAME
+    echo "output.mp4" >>output.sh
+fi
+
+# -------------------------------------------------------------------------------------------------------------------
+# ADDING THE GIF FILES TO THE VIDEO FILE
+# -------------------------------------------------------------------------------------------------------------------
 
 # MAKING THE OUTPUT VIDEO SCRIPT EXECUTABLE
 chmod +x output.sh
 
 # RUNNING THE VIDEO MAKER SCRIPT
 ./output.sh
+
+# CHECKING IF GIF FILES WERE NOT ADDED TO THE VIDEO AND RENAMING OUTPUT VIDEO FILE
+if ! test -f "input_gifs.cfg";
+  then
+    mv output-part1.mp4 output.mp4
+fi
 
 # DELETING THE AUDIO OUTPUT SCRIPT
 if test -f "output_audio.sh";
@@ -170,6 +252,12 @@ fi
 if test -f "output_audio.mp3";
   then
     rm output_audio.mp3
+fi
+
+# DELETING THE VIDEO OUTPUT PART 1 FILE
+if test -f "output-part1.mp4";
+  then
+    rm output-part1.mp4
 fi
 
 # DELETING THE VIDEO OUTPUT SCRIPT
