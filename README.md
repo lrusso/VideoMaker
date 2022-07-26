@@ -42,7 +42,7 @@ The required data for each row is: ```filename``` (string), ```ignore_loop``` (0
 
 - Install ```ffmpeg``` on your system.
 - Open the terminal.
-- Go to the folder where you have your slides, audios (optional) and configuration files (```input_video.cfg``` and ```input_audio.cfg```) are located.
+- Go to the folder where you have your slides, audios (optional), GIFs (optional) and configuration files (```input_video.cfg``` and the optional ```input_audio.cfg``` and ```input_gifs.cfg```) are located.
 - Paste the ```make.sh``` file into that folder.
 - Make the script executable by running ```chmod +x make.sh```
 - Run ```./make.sh```.
