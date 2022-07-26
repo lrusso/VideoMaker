@@ -86,7 +86,7 @@ ffmpeg -i voice.wav -ss 20 voice_edited.wav
 ```
 ffmpeg -i voice.wav -ss 20 -t 5 voice_edited.wav
 ```
-- For converting a MP4 to GIF:
+- For converting a MP4 file to a GIF file:
 ```
 ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=320:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' video.gif
 ```
