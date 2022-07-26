@@ -1,6 +1,6 @@
 # Video Maker
 
-Creating a video using images, music and a fade in effect using ffmpeg.
+Creating a video using static images, GIFs, music and a fade in effect using ffmpeg.
 
 ## How does it work?
 
