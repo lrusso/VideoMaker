@@ -86,6 +86,14 @@ ffmpeg -i voice.wav -ss 20 voice_edited.wav
 ```
 ffmpeg -i voice.wav -ss 20 -t 5 voice_edited.wav
 ```
+- For adding a 5 seconds fade in to an audio file when the starts:
+```
+ffmpeg -i music.mp3 -af "afade=t=in:st=0:d=5" music_edited.mp3
+```
+- For adding a 5 seconds fade out after 30 seconds to an audio file:
+```
+ffmpeg -i music.mp3 -af "afade=t=out:st=30:d=5" music_edited.mp3
+```
 - For converting a MP4 file to a GIF file:
 ```
 ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=320:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' video.gif
