@@ -97,7 +97,7 @@ if test -f "input_audio.cfg";
 fi
 
 # -------------------------------------------------------------------------------------------------------------------
-# CREATING THE SCRIPT FOR MAKING THE VIDEO WITH IMAGES AND SOUNDS
+# CREATING THE SCRIPT FOR MAKING THE VIDEO FILE WITH IMAGES AND SOUNDS
 # -------------------------------------------------------------------------------------------------------------------
 
 let videoCounter1=0
