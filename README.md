@@ -86,7 +86,7 @@ ffmpeg -i voice.wav -ss 20 voice_edited.wav
 ```
 ffmpeg -i voice.wav -ss 20 -t 5 voice_edited.wav
 ```
-- For adding a 5 seconds fade in to an audio file when the starts:
+- For adding a 5 seconds fade in to an audio file:
 ```
 ffmpeg -i music.mp3 -af "afade=t=in:st=0:d=5" music_edited.mp3
 ```
