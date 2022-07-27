@@ -102,5 +102,5 @@ ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=320:-1:flags=lanczos,split [o1
 ```
 - Cropping a MP4 file that has a 1080x2316 resolution to a 1080x2030 video file using a Y offset of 110 pixels:
 ```
-ffmpeg -i in.mp4 -filter:v "crop=1080:2030:0:110" -c:a copy out.mp4
+ffmpeg -i video.mp4 -filter:v "crop=1080:2030:0:110" -c:a copy video_edited.mp4
 ```
