@@ -39,6 +39,9 @@ if test -f "input_audio.cfg";
     # PASSING ALL THE AUDIO FILES AS INPUT PARAMETERS
     while IFS=, read -r field1 field2
       do
+        field1=`echo $field1 | sed 's/ *$//g'`
+        field2=`echo $field2 | sed 's/ *$//g'`
+
         echo "-i "$field1" \\" >>output_audio.sh
     done < input_audio.cfg
 
@@ -48,6 +51,9 @@ if test -f "input_audio.cfg";
     # PASSING EVERY DELAY OF EVERY AUDIO
     while IFS=, read -r field1 field2
       do
+        field1=`echo $field1 | sed 's/ *$//g'`
+        field2=`echo $field2 | sed 's/ *$//g'`
+
         audioDelayInMS=`echo $field2 1000 | awk '{print $1 * $2}'`
         audioCounter1=$((audioCounter1+1))
         echo "["$audioCounter1"]adelay="$audioDelayInMS"|"$audioDelayInMS"[a"$audioCounter1"]; \\" >>output_audio.sh
@@ -59,6 +65,9 @@ if test -f "input_audio.cfg";
     # DECLARING ALL THE AUDIOS
     while IFS=, read -r field1 field2
       do
+        field1=`echo $field1 | sed 's/ *$//g'`
+        field2=`echo $field2 | sed 's/ *$//g'`
+
         audioCounter1=$((audioCounter1+1))
         echo "[a"$audioCounter1"]\\" >>output_audio.sh
     done < input_audio.cfg
@@ -104,7 +113,10 @@ echo "ffmpeg \\" >output.sh
 # PASSING ALL THE IMAGE FILES
 while IFS=, read -r field1 field2
   do
-    videoTimeValue=`echo $videoDuration+$field2 | awk '{print $1 + $2}'`
+    field1=`echo $field1 | sed 's/ *$//g'`
+    field2=`echo $field2 | sed 's/ *$//g'`
+
+    videoTimeValue=`echo $videoDuration $field2 | awk '{print $1 + $2}'`
     videoDuration=$videoTimeValue
     videoCounter1=$((videoCounter1+1))
     echo "-loop 1 -t "$videoTimeValue" -i "$field1" \\" >>output.sh
@@ -123,11 +135,14 @@ echo "-filter_complex \" \\" >>output.sh
 # PASSING ALL THE FADE IN EFFECT FOR EVERY SLIDE
 while IFS=, read -r field1 field2
   do
+    field1=`echo $field1 | sed 's/ *$//g'`
+    field2=`echo $field2 | sed 's/ *$//g'`
+
     if ((videoCounter2>0))
       then
         echo " ["$videoCounter2"]format=yuv420p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+"$videoSlideDuration"/TB[f"$((videoCounter2-1))"]; \\" >>output.sh
     fi
-    videoTimeValue=`echo $videoSlideDuration+$field2 | awk '{print $1 + $2}'`
+    videoTimeValue=`echo $videoSlideDuration $field2 | awk '{print $1 + $2}'`
     videoSlideDuration=$videoTimeValue
     videoCounter2=$((videoCounter2+1))
 done < input_video.cfg
@@ -189,7 +204,16 @@ if test -f "input_gifs.cfg";
     # PASSING ALL THE GIF FILES
     while IFS=, read -r field1 field2 field3 field4 field5 field6 field7 field8
       do
-        echo "-ignore_loop"$field2" -i "$field1" \\" >>output.sh
+        field1=`echo $field1 | sed 's/ *$//g'`
+        field2=`echo $field2 | sed 's/ *$//g'`
+        field3=`echo $field3 | sed 's/ *$//g'`
+        field4=`echo $field4 | sed 's/ *$//g'`
+        field5=`echo $field5 | sed 's/ *$//g'`
+        field6=`echo $field6 | sed 's/ *$//g'`
+        field7=`echo $field7 | sed 's/ *$//g'`
+        field8=`echo $field8 | sed 's/ *$//g'`
+
+        echo "-ignore_loop "$field2" -i "$field1" \\" >>output.sh
     done < input_gifs.cfg
 
     # WRITING THE GIF FILTER PARAMETER
@@ -198,10 +222,15 @@ if test -f "input_gifs.cfg";
     # SETTING ALL THE FADES IN AND OUT FOR EACH GIF FILE
     while IFS=, read -r field1 field2 field3 field4 field5 field6 field7 field8
       do
+        field1=`echo $field1 | sed 's/ *$//g'`
+        field2=`echo $field2 | sed 's/ *$//g'`
         field3=`echo $field3 | sed 's/ *$//g'`
         field4=`echo $field4 | sed 's/ *$//g'`
+        field5=`echo $field5 | sed 's/ *$//g'`
+        field6=`echo $field6 | sed 's/ *$//g'`
         field7=`echo $field7 | sed 's/ *$//g'`
         field8=`echo $field8 | sed 's/ *$//g'`
+
         echo " ["$gifCounter1"]scale="$field3":"$field4",fade=in:st="$field7":d=1:alpha=1,fade=out:st="$field8":d=1:alpha=1[f"$((gifCounter1-1))"]; \\" >>output.sh
         gifCounter1=$((gifCounter1+1))
     done < input_gifs.cfg
@@ -209,8 +238,15 @@ if test -f "input_gifs.cfg";
     # SETTING ALL THE ELEMENTS THAT WILL BE ADDED DURING THE FFMPEG EXECUTION
     while IFS=, read -r field1 field2 field3 field4 field5 field6 field7 field8
       do
+        field1=`echo $field1 | sed 's/ *$//g'`
+        field2=`echo $field2 | sed 's/ *$//g'`
+        field3=`echo $field3 | sed 's/ *$//g'`
+        field4=`echo $field4 | sed 's/ *$//g'`
         field5=`echo $field5 | sed 's/ *$//g'`
         field6=`echo $field6 | sed 's/ *$//g'`
+        field7=`echo $field7 | sed 's/ *$//g'`
+        field8=`echo $field8 | sed 's/ *$//g'`
+
         if (($gifCounter2==0));
           then
             echo " [0][f0]overlay="$field5":"$field6"[bg1]; \\" >>output.sh
