@@ -43,7 +43,7 @@ if test -f "input_audio.cfg";
         field2=`echo $field2 | sed 's/ *$//g'`
 
         echo "-i "$field1" \\" >>output_audio.sh
-    done < input_audio.cfg
+    done < <(grep "" input_audio.cfg)
 
     # WRITING THE AUDIO FILTER PARAMETER
     echo "-filter_complex \"\\" >>output_audio.sh
@@ -57,7 +57,7 @@ if test -f "input_audio.cfg";
         audioDelayInMS=`echo $field2 1000 | awk '{print $1 * $2}'`
         audioCounter1=$((audioCounter1+1))
         echo "["$audioCounter1"]adelay="$audioDelayInMS"|"$audioDelayInMS"[a"$audioCounter1"]; \\" >>output_audio.sh
-    done < input_audio.cfg
+    done < <(grep "" input_audio.cfg)
 
     # RESETTING THE AUDIO COUNTER
     audioCounter1=-1
@@ -70,7 +70,7 @@ if test -f "input_audio.cfg";
 
         audioCounter1=$((audioCounter1+1))
         echo "[a"$audioCounter1"]\\" >>output_audio.sh
-    done < input_audio.cfg
+    done < <(grep "" input_audio.cfg)
 
     # UPDATING THE AUDIO CONTAINER
     audioCounter1=$((audioCounter1+1))
@@ -120,7 +120,7 @@ while IFS=, read -r field1 field2
     videoDuration=$videoTimeValue
     videoCounter1=$((videoCounter1+1))
     echo "-loop 1 -t "$videoTimeValue" -i "$field1" \\" >>output.sh
-done < input_video.cfg
+done < <(grep "" input_video.cfg)
 
 # CHECKING IF THERE IS AN AUDIO OUTPUT CREATED AND USING IT
 if test -f "output_audio.mp3";
@@ -145,7 +145,7 @@ while IFS=, read -r field1 field2
     videoTimeValue=`echo $videoSlideDuration $field2 | awk '{print $1 + $2}'`
     videoSlideDuration=$videoTimeValue
     videoCounter2=$((videoCounter2+1))
-done < input_video.cfg
+done < <(grep "" input_video.cfg)
 
 # DECLARING ALL THE SLIDES
 for (( i=0; i<=$videoCounter1-2; i++ ))
@@ -214,7 +214,7 @@ if test -f "input_gifs.cfg";
         field8=`echo $field8 | sed 's/ *$//g'`
 
         echo "-ignore_loop "$field2" -i "$field1" \\" >>output.sh
-    done < input_gifs.cfg
+    done < <(grep "" input_gifs.cfg)
 
     # WRITING THE GIF FILTER PARAMETER
     echo "-filter_complex \" \\" >>output.sh
@@ -233,7 +233,7 @@ if test -f "input_gifs.cfg";
 
         echo " ["$gifCounter1"]scale="$field3":"$field4",fade=in:st="$field7":d=1:alpha=1,fade=out:st="$field8":d=1:alpha=1[f"$((gifCounter1-1))"]; \\" >>output.sh
         gifCounter1=$((gifCounter1+1))
-    done < input_gifs.cfg
+    done < <(grep "" input_gifs.cfg)
 
     # SETTING ALL THE ELEMENTS THAT WILL BE ADDED DURING THE FFMPEG EXECUTION
     while IFS=, read -r field1 field2 field3 field4 field5 field6 field7 field8
@@ -259,7 +259,7 @@ if test -f "input_gifs.cfg";
              fi
           fi
         gifCounter2=$((gifCounter2+1))
-    done < input_gifs.cfg
+    done < <(grep "" input_gifs.cfg)
 
     # SETTING THE VIDEO DURATION
     echo "-t "$videoDuration" \\" >>output.sh
