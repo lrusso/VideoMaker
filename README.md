@@ -100,3 +100,7 @@ ffmpeg -i music.mp3 -af "afade=t=out:st=30:d=5" music_edited.mp3
 ```
 ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=320:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' video.gif
 ```
+- Cropping a MP4 file that has a 1080x2316 resolution to a 1080x2030 video file using a Y offset of 110 pixels:
+```
+ffmpeg -i in.mp4 -filter:v "crop=1080:2030:0:110" -c:a copy out.mp4
+```
