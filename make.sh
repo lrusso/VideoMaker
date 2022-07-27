@@ -102,6 +102,7 @@ fi
 
 let videoCounter1=0
 let videoCounter2=0
+let videoCounter3=0
 let videoSlideDuration=0
 let videoDuration=0
 let videoAudioEnabled=0
@@ -129,18 +130,6 @@ if test -f "output_audio.mp3";
     echo "-i output_audio.mp3 \\" >>output.sh
 fi
 
-
-
-
-
-
-
-
-
-
-
-
-
 # PASSING ALL THE FADE IN EFFECT FOR EVERY SLIDE
 while IFS=, read -r field1 field2
   do
@@ -148,57 +137,50 @@ while IFS=, read -r field1 field2
     field2=`echo $field2 | sed 's/ *$//g'`
 
     if ((videoCounter2==1))
-    	then
-    # ADDING THE VIDEO FILTER PARAMETER
-   echo "-filter_complex \" \\" >>output.sh
-    	fi
-
-
-
+      then
+        echo "-filter_complex \" \\" >>output.sh
+    fi
 
     if ((videoCounter2>0))
       then
         echo " ["$videoCounter2"]format=yuv420p,fade=d=1:t=in:alpha=1,setpts=PTS-STARTPTS+"$videoSlideDuration"/TB[f"$((videoCounter2-1))"]; \\" >>output.sh
     fi
+
     videoTimeValue=`echo $videoSlideDuration $field2 | awk '{print $1 + $2}'`
     videoSlideDuration=$videoTimeValue
     videoCounter2=$((videoCounter2+1))
 done < <(grep "" input_video.cfg)
 
+# SETTING ALL THE ELEMENTS THAT WILL BE ADDED DURING THE FFMPEG EXECUTION
+while IFS=, read -r field1 field2
+  do
+    field1=`echo $field1 | sed 's/ *$//g'`
+    field2=`echo $field2 | sed 's/ *$//g'`
 
-let videoCounter3=0
-
-    # SETTING ALL THE ELEMENTS THAT WILL BE ADDED DURING THE FFMPEG EXECUTION
-    while IFS=, read -r field1 field2
-      do
-        field1=`echo $field1 | sed 's/ *$//g'`
-        field2=`echo $field2 | sed 's/ *$//g'`
-
-        if (($videoCounter3<$videoCounter1-1));
+    if (($videoCounter3<$videoCounter1-1));
+      then
+        if (($videoCounter3==0 && $videoCounter1==2));
           then
-            if (($videoCounter3==0 && $videoCounter1==2));
+            echo " [0][f0]overlay,format=yuv420p[v]\" \\" >>output.sh
+          else
+            if (($videoCounter3==0));
               then
-                echo " [0][f0]overlay,format=yuv420p[v]\" \\" >>output.sh
+                echo " [0][f0]overlay[bg1]; \\" >>output.sh
               else
-                if (($videoCounter3==0));
+                if (($videoCounter3==$videoCounter1-2))
                   then
-                    echo " [0][f0]overlay[bg1]; \\" >>output.sh
+                    echo " [bg"$videoCounter3"][f"$videoCounter3"]overlay,format=yuv420p[v]\" \\" >>output.sh
                   else
-                    if (($videoCounter3==$videoCounter1-2))
-                      then
-                        echo " [bg"$videoCounter3"][f"$videoCounter3"]overlay,format=yuv420p[v]\" \\" >>output.sh
-                      else
-                        echo " [bg"$videoCounter3"][f"$videoCounter3"]overlay[bg"$((videoCounter3+1))"]; \\" >>output.sh
-                    fi
-                 fi
+                    echo " [bg"$videoCounter3"][f"$videoCounter3"]overlay[bg"$((videoCounter3+1))"]; \\" >>output.sh
+                fi
             fi
         fi
+    fi
 
-        videoCounter3=$((videoCounter3+1))
-    done < <(grep "" input_video.cfg)
+    videoCounter3=$((videoCounter3+1))
+done < <(grep "" input_video.cfg)
 
-
-
+# CHECKING IF THERE ARE MORE THAT 1 SLIDE
 if ((videoCounter2>1))
   then
     # ENABLING THE VIDEO MAP
@@ -210,8 +192,6 @@ if ((videoCounter2>1))
         echo "-map "$((videoCounter1))":a \\" >>output.sh
     fi
 fi
-
-
 
 # SETTING THE VIDEO DURATION
 echo "-t "$videoDuration" \\" >>output.sh
@@ -352,7 +332,7 @@ if test -f "output-part1.mp4";
 fi
 
 # DELETING THE VIDEO OUTPUT SCRIPT
-#if test -f "output.sh";
-#  then
-#    rm output.sh
-#fi
+if test -f "output.sh";
+  then
+    rm output.sh
+fi
