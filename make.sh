@@ -73,6 +73,9 @@ if test -f "input_audio.cfg";
     # AND WHEN MODIFIED THE VOLUME OF THE NEW AUDIO.
     echo ":duration=first:dropout_transition=99999999,volume=2.1\" \\" >>output_audio.sh
 
+    # SHOWING ONLY ERRORS (IF ANY) DURING THE SCRIPT EXECUTION
+    echo "-loglevel error \\" >>output_audio.sh
+
     # SETTING THE OUTPUT AUDIO FILENAME
     echo "output_audio.mp3" >>output_audio.sh
 
@@ -157,6 +160,9 @@ fi
 # SETTING THE VIDEO DURATION
 echo "-t "$videoDuration" \\" >>output.sh
 
+# SHOWING ONLY ERRORS (IF ANY) DURING THE SCRIPT EXECUTION
+echo "-loglevel error \\" >>output.sh
+
 # SETTING THE OUTPUT VIDEO FILENAME
 echo "output-part1.mp4" >>output.sh
 
@@ -221,6 +227,9 @@ if test -f "input_gifs.cfg";
 
     # SETTING THE VIDEO DURATION
     echo "-t "$videoDuration" \\" >>output.sh
+
+    # SHOWING ONLY ERRORS (IF ANY) DURING THE SCRIPT EXECUTION
+    echo "-loglevel error \\" >>output.sh
 
     # SETTING THE OUTPUT VIDEO FILENAME
     echo "output.mp4" >>output.sh
