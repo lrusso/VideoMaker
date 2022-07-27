@@ -247,16 +247,21 @@ if test -f "input_gifs.cfg";
         field7=`echo $field7 | sed 's/ *$//g'`
         field8=`echo $field8 | sed 's/ *$//g'`
 
-        if (($gifCounter2==0));
+        if (($gifCounter2==0 && $gifCounter1==2));
           then
-            echo " [0][f0]overlay="$field5":"$field6"[bg1]; \\" >>output.sh
+            echo " [0][f0]overlay="$field5":"$field6",format=yuv420p\" \\" >>output.sh
           else
-            if (($gifCounter2==$gifCounter1-2))
+            if (($gifCounter2==0));
               then
-                echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6",format=yuv420p\" \\" >>output.sh
+                echo " [0][f0]overlay="$field5":"$field6"[bg1]; \\" >>output.sh
               else
-                echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6"[bg"$((gifCounter2+1))"]; \\" >>output.sh
-             fi
+                if (($gifCounter2==$gifCounter1-2))
+                  then
+                    echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6",format=yuv420p\" \\" >>output.sh
+                  else
+                    echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6"[bg"$((gifCounter2+1))"]; \\" >>output.sh
+                fi
+            fi
           fi
         gifCounter2=$((gifCounter2+1))
     done < <(grep "" input_gifs.cfg)
