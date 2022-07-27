@@ -60,11 +60,12 @@ slide002.png, 1
 ```
 
 ## Useful ffmpeg commands
-- Increasing the volume of an audio file, you can do:
+
+- Increasing the volume of an audio file:
 ```
 ffmpeg -i voice.wav -filter:a "volume=1.5" voice_edited.wav
 ```
-- Decreasing the volume of an audio file, you can do:
+- Decreasing the volume of an audio file:
 ```
 ffmpeg -i voice.wav -filter:a "volume=0.5" voice_edited.wav
 ```
