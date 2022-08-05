@@ -252,7 +252,7 @@ if test -f "input_gifs.cfg";
         field7=`echo $field7 | sed 's/ *$//g'`
         field8=`echo $field8 | sed 's/ *$//g'`
 
-        echo " ["$gifCounter1"]scale="$field3":"$field4",fade=in:st="$field7":d=1:alpha=1,fade=out:st="$field8":d=1:alpha=1[f"$((gifCounter1-1))"]; \\" >>output.sh
+        echo " ["$gifCounter1"]setpts=PTS-STARTPTS+"$field7"/TB,scale="$field3":"$field4",fade=in:st="$field7":d=1:alpha=1,fade=out:st="$field8":d=1:alpha=1[f"$((gifCounter1-1))"]; \\" >>output.sh
         gifCounter1=$((gifCounter1+1))
     done < <(grep "" input_gifs.cfg)
 
