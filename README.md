@@ -31,12 +31,12 @@ voice004.wav, 7.8
 - The ```input_gifs.cfg``` file must contain all the gif files that are going to be displayed during the video. For example:
 
 ```
-gif001.gif, 0, 200, 200, 100, 100, 3, 5
-gif002.gif, 0, 200, 200, 300, 300, 6, 8
-gif003.gif, 0, 200, 200, 500, 500, 9, 10
+gif001.gif, 0, 150, 150, 256, 256, 3, 5
+gif002.gif, 0, 300, 300, 256, 256, 6, 8
+gif003.gif, 0, 450, 450, 256, 256, 9, 10
 ```
 
-The required data for each row is: ```filename``` (string), ```ignore_loop``` (0 or 1), ```width``` (integer), ```height``` (integer), ```x``` (integer), ```y``` (integer), ```fade_in_after``` (seconds) and ```fade_out_after``` (seconds).
+The required data for each row is: ```filename``` (string),```ignore_loop``` (0 or 1), ```x``` (integer), ```y``` (integer), ```width``` (integer), ```height``` (integer), ```fade_in_after``` (seconds) and ```fade_out_after``` (seconds).
 
 ## How to use it?
 
