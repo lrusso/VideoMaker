@@ -252,7 +252,7 @@ if test -f "input_gifs.cfg";
         field7=`echo $field7 | sed 's/ *$//g'`
         field8=`echo $field8 | sed 's/ *$//g'`
 
-        echo " ["$gifCounter1"]setpts=PTS-STARTPTS+"$field7"/TB,scale="$field3":"$field4",fade=in:st="$field7":d=1:alpha=1,fade=out:st="$field8":d=1:alpha=1[f"$((gifCounter1-1))"]; \\" >>output.sh
+        echo " ["$gifCounter1"]setpts=PTS-STARTPTS+"$field7"/TB,scale="$field5":"$field6",fade=in:st="$field7":d=1:alpha=1,fade=out:st="$field8":d=1:alpha=1[f"$((gifCounter1-1))"]; \\" >>output.sh
         gifCounter1=$((gifCounter1+1))
     done < <(grep "" input_gifs.cfg)
 
@@ -270,17 +270,17 @@ if test -f "input_gifs.cfg";
 
         if (($gifCounter2==0 && $gifCounter1==2));
           then
-            echo " [0][f0]overlay="$field5":"$field6",format=yuv420p\" \\" >>output.sh
+            echo " [0][f0]overlay="$field3":"$field4",format=yuv420p\" \\" >>output.sh
           else
             if (($gifCounter2==0));
               then
-                echo " [0][f0]overlay="$field5":"$field6"[bg1]; \\" >>output.sh
+                echo " [0][f0]overlay="$field3":"$field4"[bg1]; \\" >>output.sh
               else
                 if (($gifCounter2==$gifCounter1-2))
                   then
-                    echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6",format=yuv420p\" \\" >>output.sh
+                    echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field3":"$field4",format=yuv420p\" \\" >>output.sh
                   else
-                    echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field5":"$field6"[bg"$((gifCounter2+1))"]; \\" >>output.sh
+                    echo " [bg"$gifCounter2"][f"$gifCounter2"]overlay="$field3":"$field4"[bg"$((gifCounter2+1))"]; \\" >>output.sh
                 fi
             fi
           fi
