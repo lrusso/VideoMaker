@@ -60,47 +60,37 @@ slide002.png, 1
 
 ## Useful ffmpeg commands
 
-- Increasing the volume of an audio file:
 ```
+# Increasing the volume of an audio file:
 ffmpeg -i voice.wav -filter:a "volume=1.5" voice_edited.wav
-```
-- Decreasing the volume of an audio file:
-```
+
+# Decreasing the volume of an audio file:
 ffmpeg -i voice.wav -filter:a "volume=0.5" voice_edited.wav
-```
-- Changing the kbps of an audio file:
-```
+
+# Changing the kbps of an audio file:
 ffmpeg -i voice.wav -b:a 128k voice_edited.wav
-```
-- Converting an audio file from stereo to mono:
-```
+
+# Converting an audio file from stereo to mono:
 ffmpeg -i voice.wav -ac 1 voice_edited.wav
-```
-- Changing the sample rate of an audio file:
-```
+
+# Changing the sample rate of an audio file:
 ffmpeg -i voice.wav -ar 22050 voice_edited.wav
-```
-- Cutting the first 20 seconds of a audio/video file:
-```
+
+# Cutting the first 20 seconds of a audio/video file:
 ffmpeg -i voice.wav -ss 20 voice_edited.wav
-```
-- Cutting the first 20 seconds and getting only the next 5 seconds of a audio/video file:
-```
+
+# Cutting the first 20 seconds and getting only the next 5 seconds of a audio/video file:
 ffmpeg -i voice.wav -ss 20 -t 5 voice_edited.wav
-```
-- Adding a 5 seconds fade in to an audio file:
-```
+
+# Adding a 5 seconds fade in to an audio file:
 ffmpeg -i music.mp3 -af "afade=t=in:st=0:d=5" music_edited.mp3
-```
-- Adding a 5 seconds fade out after 30 seconds to an audio file:
-```
+
+# Adding a 5 seconds fade out after 30 seconds to an audio file:
 ffmpeg -i music.mp3 -af "afade=t=out:st=30:d=5" music_edited.mp3
-```
-- Converting a MP4 file to a GIF file:
-```
+
+# Converting a MP4 file to a GIF file:
 ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=320:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' video.gif
-```
-- Cropping a MP4 file that has a 1080x2316 resolution to a 1080x2030 video file using a Y offset of 110 pixels:
-```
+
+# Cropping a MP4 file that has a 1080x2316 resolution to a 1080x2030 video file using a Y offset of 110 pixels:
 ffmpeg -i video.mp4 -filter:v "crop=1080:2030:0:110" -c:a copy video_edited.mp4
 ```
