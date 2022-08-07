@@ -98,7 +98,10 @@ ffmpeg -i music.mp3 -af "afade=t=in:st=0:d=5" music_edited.mp3
 # Adding a 5 seconds fade out after 30 seconds to an audio file:
 ffmpeg -i music.mp3 -af "afade=t=out:st=30:d=5" music_edited.mp3
 
-# Converting a MP4 file to a GIF file:
+# Converting a MP4 file to a GIF file without scaling:
+ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=-1:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' video.gif
+
+# Converting a MP4 file to a scaled GIF file (320px width):
 ffmpeg -i video.mp4 -filter_complex 'fps=24,scale=320:-1:flags=lanczos,split [o1] [o2];[o1] palettegen [p]; [o2] fifo [o3];[o3] [p] paletteuse' video.gif
 
 # Cropping a MP4 file that has a 1080x2316 resolution to a 1080x2030 video file using a Y offset of 110 pixels:
