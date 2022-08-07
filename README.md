@@ -66,6 +66,7 @@ The required values for each row are:
 slide001.png, 0
 slide002.png, 1
 ```
+- A workflow for GitHub Actions was created in this repository that shows how to create a video and attach it to the job as an artifact.
 
 ## Useful ffmpeg commands
 
