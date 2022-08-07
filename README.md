@@ -1,4 +1,4 @@
-# Video Maker
+# VideoMaker
 
 Creating a video using static images, GIFs, music and a fade in effect using ffmpeg.
 
