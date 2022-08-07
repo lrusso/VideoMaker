@@ -2,6 +2,16 @@
 
 Creating a video using static images, GIFs, music and a fade in effect using ffmpeg.
 
+## How to use it?
+
+- Install ```ffmpeg``` on your system.
+- Open the terminal.
+- Unzip the sample ```video.zip``` file.
+- Paste the ```make.sh``` file into that folder.
+- Make the script executable by running ```chmod +x make.sh```
+- Run ```./make.sh```.
+- The  ```output.mp4``` file will be created.
+
 ## How does it work?
 
 - The script will read the ```input_video.cfg``` file.
@@ -46,16 +56,6 @@ The required values for each row are:
 * ```height``` (integer)
 * ```fade_in_after``` (seconds)
 * ```fade_out_after``` (seconds)
-
-## How to use it?
-
-- Install ```ffmpeg``` on your system.
-- Open the terminal.
-- Unzip the sample ```video.zip``` file.
-- Paste the ```make.sh``` file into that folder.
-- Make the script executable by running ```chmod +x make.sh```
-- Run ```./make.sh```.
-- The  ```output.mp4``` file will be created.
 
 ## Things to know:
 
