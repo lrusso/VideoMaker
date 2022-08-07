@@ -52,6 +52,7 @@ The required values for each row are:
 - Install ```ffmpeg``` on your system.
 - Open the terminal.
 - Go to the folder where you have your slides, audios (optional), GIFs (optional) and configuration files (```input_video.cfg``` and the optional ```input_audio.cfg``` and ```input_gifs.cfg```) are located.
+- Unzip the sample ```video.zip``` file.
 - Paste the ```make.sh``` file into that folder.
 - Make the script executable by running ```chmod +x make.sh```
 - Run ```./make.sh```.
