@@ -6,9 +6,9 @@ jobs:
   videomaker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Installing unzip
-        run: brew install unzip
+        run: sudo apt-get install -y unzip
       - name: Unzipping the video.zip file
         run: unzip video.zip -d tmpfolder20220805
       - name: Checking if a VideoMaker configuration exists
@@ -21,13 +21,13 @@ jobs:
                  exit 1
              fi
       - name: Installing ffmpeg 
-        run: brew install ffmpeg
+        run: sudo apt-get install -y ffmpeg
       - name: Making the VideoMaker script executable
         run: chmod +x ./make.sh
       - name: Creating the video file
         run: cd tmpfolder20220805/video && ../../make.sh && cp output.mp4 created-video.mp4
       - name: Attaching the created video this workflow
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: created-video
           path: tmpfolder20220805/video/created-video.mp4
