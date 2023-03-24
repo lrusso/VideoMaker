@@ -1,5 +1,5 @@
 name: "VideoMaker"
- 
+
 on: workflow_dispatch
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
                  echo "VideoMaker configuration file not found."
                  exit 1
              fi
-      - name: Installing ffmpeg 
+      - name: Installing ffmpeg
         run: sudo apt-get install -y ffmpeg
       - name: Making the VideoMaker script executable
         run: chmod +x ./make.sh
