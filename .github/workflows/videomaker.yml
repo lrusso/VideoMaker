@@ -6,7 +6,10 @@ jobs:
   videomaker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
       - name: Installing unzip
         run: sudo apt-get install -y unzip
       - name: Unzipping the video.zip file
