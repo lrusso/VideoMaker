@@ -2,7 +2,7 @@
 
 Creating a video using static images, GIFs, music and a fade in effect using ffmpeg.
 
-## How to use it?
+## How to use the Bash version?
 
 - Install ```ffmpeg``` on your system.
 - Open the terminal.
@@ -10,6 +10,15 @@ Creating a video using static images, GIFs, music and a fade in effect using ffm
 - Paste the ```make.sh``` file into that folder.
 - Make the script executable by running ```chmod +x make.sh```
 - Run ```./make.sh```.
+- The  ```output.mp4``` file will be created.
+
+## How to use the JavaScript version?
+
+- Install ```ffmpeg``` on your system.
+- Open the terminal.
+- Unzip the sample ```video.zip``` file.
+- Paste the ```make.js``` file into that folder.
+- Run ```node make```.
 - The  ```output.mp4``` file will be created.
 
 ## How does it work?
