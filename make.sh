@@ -85,8 +85,8 @@ if test -f "input_audio.cfg";
     # SHOWING ONLY ERRORS (IF ANY) DURING THE SCRIPT EXECUTION
     echo "-loglevel error \\" >>output_audio.sh
 
-    # SETTING THE OUTPUT AUDIO FILENAME
-    echo "output_audio.mp3" >>output_audio.sh
+    # SETTING THE AUDIO BITRATE AND THE OUTPUT AUDIO FILENAME
+    echo "-b:a 192k output_audio.mp3" >>output_audio.sh
 
     # MAKING THE OUTPUT AUDIO SCRIPT EXECUTABLE
     chmod +x output_audio.sh
@@ -199,8 +199,8 @@ echo "-t "$videoDuration" \\" >>output.sh
 # SHOWING ONLY ERRORS (IF ANY) DURING THE SCRIPT EXECUTION
 echo "-loglevel error \\" >>output.sh
 
-# SETTING THE OUTPUT VIDEO FILENAME
-echo "output-part1.mp4" >>output.sh
+# SETTING THE AUDIO BITRATE AND OUTPUT VIDEO FILENAME
+echo "-b:a 192k output-part1.mp4" >>output.sh
 
 # -------------------------------------------------------------------------------------------------------------------
 # CREATING THE SCRIPT FOR ADDING THE GIF FILES TO THE VIDEO FILE
@@ -293,8 +293,8 @@ if test -f "input_gifs.cfg";
     # SHOWING ONLY ERRORS (IF ANY) DURING THE SCRIPT EXECUTION
     echo "-loglevel error \\" >>output.sh
 
-    # SETTING THE OUTPUT VIDEO FILENAME
-    echo "output.mp4" >>output.sh
+    # SETTING THE AUDIO BITRATE AND OUTPUT VIDEO FILENAME
+    echo "-b:a 192k output.mp4" >>output.sh
 fi
 
 # -------------------------------------------------------------------------------------------------------------------

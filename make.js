@@ -53,7 +53,7 @@ if (fs.existsSync("input_audio.cfg")) {
   outputAudioSh += `amix=inputs=${audioCounter1} \\\n`
   outputAudioSh += ':duration=first:dropout_transition=99999999,volume=2.1" \\\n'
   outputAudioSh += "-loglevel error \\\n"
-  outputAudioSh += "output_audio.mp3"
+  outputAudioSh += "-b:a 192k output_audio.mp3"
 
   execSync(outputAudioSh)
 }
@@ -125,7 +125,7 @@ if (videoCounter2 > 1) {
 
 outputSh += `-t ${videoDuration} \\\n`
 outputSh += "-loglevel error \\\n"
-outputSh += "output_part1.mp4"
+outputSh += "-b:a 192k output_part1.mp4"
 
 // -------------------------------------------------------------------------------------------------------------------
 // ADDING GIF TO THE VIDEO FILE
@@ -169,7 +169,7 @@ if (fs.existsSync("input_gifs.cfg")) {
 
   outputSh += `-t ${videoDuration} \\\n`
   outputSh += "-loglevel error \\\n"
-  outputSh += "output.mp4"
+  outputSh += "-b:a 192k output.mp4"
 }
 
 execSync(outputSh)
